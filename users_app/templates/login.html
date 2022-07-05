@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+    <title>Login-Taskmate</title>
+{% endblock title %}
+{% block content %}
+    <div class="container">
+
+        <br>
+        <div class="jumbotron col-6">
+          <h2 class="display-3">Login to TaskMate</h2>
+          {%if messages%}
+            {% for message in messages %}
+            <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                <div class="" role="alert">
+                  {{message}}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div>   
+            {%endfor%}
+          {%endif%} 
+          <form method="POST" class="mt-5 col-6">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button type="submit" class="btn btn-success">Login</button>
+          </form> 
+        </div>     
+    </div>
+{% endblock content %}
